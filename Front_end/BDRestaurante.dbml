@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BDRestaurante" Class="BDRestauranteDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=BDRestaurante;Integrated Security=True;Pooling=True;Min Pool Size=0;Max Pool Size=10024" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BDRestauranteConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.TUsuario" Member="TUsuario">
+    <Type Name="TUsuario">
+      <Column Name="IdUsuario" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Apellido" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Celular" Type="System.String" DbType="VarChar(9)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Contrasena" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TipoUsuario" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Association Name="TUsuario_TPedido" Member="TPedido" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="TPedido" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TCategoria" Member="TCategoria">
+    <Type Name="TCategoria">
+      <Column Name="IdCategoria" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="TCategoria_TProducto" Member="TProducto" ThisKey="IdCategoria" OtherKey="IdCategoria" Type="TProducto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TDetalleReceta" Member="TDetalleReceta">
+    <Type Name="TDetalleReceta">
+      <Column Name="CantidadProducto" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="CostoEnReceta" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="IdProducto" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="IdReceta" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Association Name="TProducto_TDetalleReceta" Member="TProducto" ThisKey="IdProducto" OtherKey="IdProducto" Type="TProducto" IsForeignKey="true" />
+      <Association Name="TReceta_TDetalleReceta" Member="TReceta" ThisKey="IdReceta" OtherKey="IdReceta" Type="TReceta" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TItemPedido" Member="TItemPedido">
+    <Type Name="TItemPedido">
+      <Column Name="PrecioUnitario" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="cantidad" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IdPedido" Type="System.String" DbType="VarChar(5)" CanBeNull="true" />
+      <Column Name="IdReceta" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="TPedido_TItemPedido" Member="TPedido" ThisKey="IdPedido" OtherKey="IdPedido" Type="TPedido" IsForeignKey="true" />
+      <Association Name="TReceta_TItemPedido" Member="TReceta" ThisKey="IdReceta" OtherKey="IdReceta" Type="TReceta" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TPedido" Member="TPedido">
+    <Type Name="TPedido">
+      <Column Name="IdPedido" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TotalVenta" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="FechaVenta" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EstadoPedido" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="IdUsuario" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Association Name="TPedido_TItemPedido" Member="TItemPedido" ThisKey="IdPedido" OtherKey="IdPedido" Type="TItemPedido" />
+      <Association Name="TUsuario_TPedido" Member="TUsuario" ThisKey="IdUsuario" OtherKey="IdUsuario" Type="TUsuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TProducto" Member="TProducto">
+    <Type Name="TProducto">
+      <Column Name="IdProducto" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Stock" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="UnidadMedida" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="CostoUnitario" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="FechaRegistro" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="EstadoProducto" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="ControlProducto" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="IdCategoria" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Association Name="TProducto_TDetalleReceta" Member="TDetalleReceta" ThisKey="IdProducto" OtherKey="IdProducto" Type="TDetalleReceta" />
+      <Association Name="TProducto_TBajaProducto" Member="TBajaProducto" ThisKey="IdProducto" OtherKey="IdProducto" Type="TBajaProducto" />
+      <Association Name="TCategoria_TProducto" Member="TCategoria" ThisKey="IdCategoria" OtherKey="IdCategoria" Type="TCategoria" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TReceta" Member="TReceta">
+    <Type Name="TReceta">
+      <Column Name="IdReceta" Type="System.String" DbType="VarChar(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CostoReceta" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioVenta" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TiempoCoccion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TipoReceta" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="EstadoReceta" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Association Name="TReceta_TDetalleReceta" Member="TDetalleReceta" ThisKey="IdReceta" OtherKey="IdReceta" Type="TDetalleReceta" />
+      <Association Name="TReceta_TItemPedido" Member="TItemPedido" ThisKey="IdReceta" OtherKey="IdReceta" Type="TItemPedido" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBajaProducto" Member="TBajaProducto">
+    <Type Name="TBajaProducto">
+      <Column Name="IdProducto" Type="System.String" DbType="VarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Cantidad" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Motivo" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TProducto_TBajaProducto" Member="TProducto" ThisKey="IdProducto" OtherKey="IdProducto" Type="TProducto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.spEliminarUsuario" Method="spEliminarUsuario">
+    <Parameter Name="idUsuario" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="spEliminarUsuarioResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(31) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spLogin" Method="spLogin">
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Contrasena" Parameter="contrasena" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="spLoginResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(14) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spCrearUsuario" Method="spCrearUsuario">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Apellido" Parameter="apellido" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Direccion" Parameter="direccion" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Celular" Parameter="celular" Type="System.String" DbType="VarChar(9)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="Contrasena" Parameter="contrasena" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TipoUsuario" Parameter="tipoUsuario" Type="System.String" DbType="VarChar(12)" />
+    <ElementType Name="spCrearUsuarioResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(27) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spCrearCategoria" Method="spCrearCategoria">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="spCrearCategoriaResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(31) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spCrearProducto" Method="spCrearProducto">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Stock" Parameter="stock" Type="System.Double" DbType="Float" />
+    <Parameter Name="UnidadMedida" Parameter="unidadMedida" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="CostoUnitario" Parameter="costoUnitario" Type="System.Double" DbType="Float" />
+    <Parameter Name="ControlProducto" Parameter="controlProducto" Type="System.String" DbType="VarChar(15)" />
+    <Parameter Name="IdCategoria" Parameter="idCategoria" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="spCrearProductoResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(37) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spEliminarProducto" Method="spEliminarProducto">
+    <Parameter Name="IdProducto" Parameter="idProducto" Type="System.String" DbType="VarChar(5)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.spEliminarProducto" Method="spEliminarProducto1">
+    <Parameter Name="IdProducto" Parameter="idProducto" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="spEliminarProductoResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spCrearReceta" Method="spCrearReceta">
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="PrecioVenta" Parameter="precioVenta" Type="System.Double" DbType="Float" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="TiempoCoccion" Parameter="tiempoCoccion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TipoReceta" Parameter="tipoReceta" Type="System.String" DbType="VarChar(15)" />
+    <ElementType Name="spCrearRecetaResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spCrearDetalleReceta" Method="spCrearDetalleReceta">
+    <Parameter Name="IdReceta" Parameter="idReceta" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="CostoEnReceta" Parameter="costoEnReceta" Type="System.Double" DbType="Float" />
+    <Parameter Name="IdRecetaProducto" Parameter="idRecetaProducto" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Selector" Parameter="selector" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="CantidadProducto" Parameter="cantidadProducto" Type="System.Double" DbType="Float" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.spCrearDetalleReceta" Method="spCrearDetalleReceta1">
+    <Parameter Name="IdReceta" Parameter="idReceta" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="CostoEnReceta" Parameter="costoEnReceta" Type="System.Double" DbType="Float" />
+    <Parameter Name="IdRecetaProducto" Parameter="idRecetaProducto" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Selector" Parameter="selector" Type="System.String" DbType="VarChar(1)" />
+    <Parameter Name="CantidadProducto" Parameter="cantidadProducto" Type="System.Double" DbType="Float" />
+    <ElementType Name="spCrearDetalleRecetaResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(35) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spCrearBajaProducto" Method="spCrearBajaProducto">
+    <Parameter Name="IdProducto" Parameter="idProducto" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Double" DbType="Float" />
+    <Parameter Name="Motivo" Parameter="motivo" Type="System.String" DbType="VarChar(250)" />
+    <ElementType Name="spCrearBajaProductoResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(47) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spRegistrarStock" Method="spRegistrarStock">
+    <Parameter Name="IdProducto" Parameter="idProducto" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Double" DbType="Float" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.spRegistrarStock" Method="spRegistrarStock1">
+    <Parameter Name="IdProducto" Parameter="idProducto" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="Cantidad" Parameter="cantidad" Type="System.Double" DbType="Float" />
+    <ElementType Name="spRegistrarStockResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spCrearItemPedido" Method="spCrearItemPedido">
+    <Parameter Name="PrecioPedido" Parameter="precioPedido" Type="System.Double" DbType="Float" />
+    <Parameter Name="cantidad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPedido" Parameter="idPedido" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdReceta" Parameter="idReceta" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="spCrearItemPedidoResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spCrearPedido" Method="spCrearPedido">
+    <Parameter Name="TotalVenta" Parameter="totalVenta" Type="System.Double" DbType="Float" />
+    <Parameter Name="Username" Parameter="username" Type="System.String" DbType="VarChar(30)" />
+    <ElementType Name="spCrearPedidoResult">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.spCrearItemPedido" Method="spCrearItemPedido1">
+    <Parameter Name="PrecioPedido" Parameter="precioPedido" Type="System.Double" DbType="Float" />
+    <Parameter Name="cantidad" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IdPedido" Parameter="idPedido" Type="System.String" DbType="VarChar(5)" />
+    <Parameter Name="IdReceta" Parameter="idReceta" Type="System.String" DbType="VarChar(5)" />
+    <ElementType Name="spCrearItemPedidoResult1">
+      <Column Name="CodError" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mensaje" Type="System.String" DbType="VarChar(29) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>
