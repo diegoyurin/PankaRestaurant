@@ -74,11 +74,10 @@
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-						<li><a href="menu.aspx">Menú</a></li>
+						<li class="active"><a href="Pedido.aspx">Pedidos</a></li>
 						<li class="has-dropdown">
 							<a href="Nosotros.aspx">Nosotros</a>
 						</li>
-						<li class="active"><a href="Pedido.aspx">Pedido</a></li>
 						<li><a href="contact.aspx">Contáctenos</a></li>
 					</ul>	
 				</div>
@@ -107,7 +106,6 @@
 				<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
 					<h2 class="cursive-font primary-color">Realice su pedido</h2>
 					<p>Ingrese su dirección de email. Luego, añada los platos que le gustaría comprar. Presione el botón de pedir para confirmar su compra.</p>
-				    <asp:TextBox runat="server" placeholder="Correo" ID="idCorreo"/>
                     <asp:Button runat="server" Text="Confirmar compra" ID="btnConfirmar" OnClick="BtnConfirmar_Click"/>
                 </div>
 			</div>

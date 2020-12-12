@@ -77,7 +77,7 @@
 				</div>
 				<div class="col-xs-8 text-right menu-1">
 					<ul>
-						<li><a href="menu.aspx">Menú</a></li>
+						<li><a href="Pedido.aspx">Pedidos</a></li>
 						<li class="has-dropdown">
 							<a href="Nosotros.aspx">Nosotros</a>
 						</li>

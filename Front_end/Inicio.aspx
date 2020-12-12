@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="Front_end.Index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inicio.aspx.cs" Inherits="Front_end.Inicio" %>
 
 <!DOCTYPE html>
 
@@ -72,7 +72,7 @@
 						</div>
 						<div class="col-xs-8 text-right menu-1">
 							<ul>
-								<li><a href="Menu.aspx">Menú</a></li>
+								<li><a href="Pedido.aspx">Pedidos</a></li>
 								<li class="has-dropdown">
 									<a href="Nosotros.aspx">Nosotros</a>
 								</li>
@@ -99,56 +99,63 @@
 			</header>
 	
 			<div class="gtco-section">
-				<div class="gtco-container">
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2 text-center gtco-heading">
-							<h2 class="cursive-font primary-color">Nuestros platos</h2>
-							<p>Revise nuestro menú para realizar pedidos a domicilio.</p>
-						</div>
-					</div>
-					<div class="row">
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <a href="images/img_1.jpg" class="fh5co-card-item image-popup">
-                                <figure>
-                                    <div class="overlay"><i class="ti-plus"></i></div>
-                                    <img src="images/img_1.jpg" alt="Image" class="img-responsive" />
-                                </figure>
-                                <div class="fh5co-text">
-                                    <h2>Causa de Pollo</h2>
-                                    <p>Es un entrante típico y muy extendido de la gastronomía del Perú que tiene origen precolombino.</p>
-                                    <p><span class="price cursive-font">S/.35</span></p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <a href="images/img_2.jpg" class="fh5co-card-item image-popup">
-                                <figure>
-                                    <div class="overlay"><i class="ti-plus"></i></div>
-                                    <img src="images/img_2.jpg" alt="Image" class="img-responsive" />
-                                </figure>
-                                <div class="fh5co-text">
-                                    <h2>Aji de gallina</h2>
-                                    <p>El ají de gallina es un plato típico de la gastronomía peruana, concretamente de la costa, que consiste en un ají o crema espesa con pechuga de gallina deshilachada.</p>
-                                    <p><span class="price cursive-font">S/.10</span></p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <a href="images/img_3.jpg" class="fh5co-card-item image-popup">
-                                <figure>
-                                    <div class="overlay"><i class="ti-plus"></i></div>
-                                    <img src="images/img_3.jpg" alt="Image" class="img-responsive" />
-                                </figure>
-                                <div class="fh5co-text">
-                                    <h2>Lomo Saltado</h2>
-                                    <p>El lomo saltado es un plato típico de la gastronomía del Perú consistente en carne de res, arroz cocido y papas fritas.</p>
-                                    <p><span class="price cursive-font">S/.15</span></p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-				</div>
-			</div>
+		        <div class="gtco-container">
+			        <div class="row">
+				        <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+					        <h2 class="cursive-font primary-color">Nuestros platos</h2>
+					        <p>Dé un vistazo a algunos de nuestros platos. Estamos seguros de que le gustarán.</p>
+				        </div>
+			        </div>
+			        <div class="row">
+				        <div class="col-lg-4 col-md-4 col-sm-6">
+					        <a href="images/img_1.jpg" class="fh5co-card-item image-popup">
+						        <figure>
+							        <div class="overlay"><i class="ti-plus"></i></div>
+							        <img src="images/img_1.jpg" alt="Image" class="img-responsive"/>
+						        </figure>
+						        <div class="fh5co-text">
+							        <h2>Causa de Pollo</h2>
+							        <p>Es un entrante típico y muy extendido de la gastronomía del Perú que tiene origen precolombino.</p>
+							        <p><span class="price cursive-font">S/.35</span></p>
+						        </div>
+					        </a>
+				        </div>
+				        <div class="col-lg-4 col-md-4 col-sm-6">
+					        <a href="images/img_2.jpg" class="fh5co-card-item image-popup">
+						        <figure>
+							        <div class="overlay"><i class="ti-plus"></i></div>
+							        <img src="images/img_2.jpg" alt="Image" class="img-responsive"/>
+						        </figure>
+						        <div class="fh5co-text">
+							        <h2>Aji de gallina</h2>
+							        <p>El ají de gallina es un plato típico de la gastronomía peruana, concretamente de la costa, que consiste en un ají o crema espesa con pechuga de gallina deshilachada.</p>
+							        <p><span class="price cursive-font">S/.10</span></p>
+						        </div>
+					        </a>
+				        </div>
+				        <div class="col-lg-4 col-md-4 col-sm-6">
+					        <a href="images/img_3.jpg" class="fh5co-card-item image-popup">
+						        <figure>
+							        <div class="overlay"><i class="ti-plus"></i></div>
+							        <img src="images/img_3.jpg" alt="Image" class="img-responsive"/>
+						        </figure>
+						        <div class="fh5co-text">
+							        <h2>Lomo Saltado</h2>
+							        <p>El lomo saltado es un plato típico de la gastronomía del Perú consistente en carne de res, arroz cocido y papas fritas.</p>
+							        <p><span class="price cursive-font">S/.15</span></p>
+						        </div>
+					        </a>
+				        </div>
+			        </div>
+                    <div class="row">
+				        <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+					        <h2 class="cursive-font primary-color">Realiza tu pedido</h2>
+					        <p>Da click en el botón para hacer un pedido.</p>
+                            <asp:Button runat="server" Text="Click aquí" ID="btnPedir" OnClick="btnPedir_Click" />
+				        </div>
+			        </div>
+		        </div>
+	        </div>
 	
 			<div id="gtco-features">
 		        <div class="gtco-container">

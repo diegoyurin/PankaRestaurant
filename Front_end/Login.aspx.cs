@@ -36,12 +36,26 @@ namespace Front_end
                 if (codError == 0)
                 {
                     Session["username"] = Usuario;
-                    Response.Redirect("" +
-                        "Index.aspx");
+                    string tipoUsuario = string.Empty;
+                    var consulta = from P in BDRestaurante.TUsuario
+                                   where P.Correo == Usuario
+                                   select new { P.TipoUsuario};
+                    foreach (var X in consulta)
+                    {
+                        tipoUsuario = Convert.ToString(X.TipoUsuario);
+                    }
+                    if (tipoUsuario.Equals("CLIENTE"))
+                    {
+                        Response.Redirect("Inicio.aspx");
+                    }
+                    else
+                    {
+                        Response.Redirect("Index.aspx");
+                    }
+                    
                 }
                 else
                 {
-                    
                     alertapass.Visible = true;
                 }
             }
@@ -49,6 +63,11 @@ namespace Front_end
             {
                 alerta.Visible = true;
             }
+        }
+
+        protected void Unnamed2_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Registro.aspx");
         }
     }
 }

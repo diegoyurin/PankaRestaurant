@@ -44,7 +44,7 @@ namespace Front_end
                 }
             }
 
-            string correo = idCorreo.Text;
+            string correo = Session["username"].ToString();
 
             var resultado = from C in Restaurante.spCrearPedido(total,correo) select C;
             byte CodError = 1;
